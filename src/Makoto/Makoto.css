@@ -1,0 +1,92 @@
+.makoto-page {
+  width: 100vw;
+  height: 100vh;
+  background-image: url('../assets/MakotoPage.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  position: relative;
+}
+
+.makoto-cutout {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 1080px;
+  width: auto;
+  z-index: 1;
+  transition: transform 0.5s ease-out;
+}
+
+.makoto-cutout:hover {
+  transform: scale(1.05);
+  transform-origin: bottom left;
+}
+
+.logo-mini-button {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  z-index: 10;
+}
+
+.logo-mini-button:hover {
+  transform: scale(1.05);
+}
+
+.logo-mini {
+  width: 350px;
+  height: auto;
+  display: block;
+}
+
+.next-button {
+  position: absolute;
+  right: 50px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  transition: transform 0.3s ease, filter 0.3s ease;
+  z-index: 10;
+}
+
+.next-button:hover {
+  transform: translateY(-50%) scale(1.15);
+  filter: drop-shadow(0 0 20px rgba(255, 255, 255, 0.8));
+}
+
+.next-button img {
+  width: 250px;
+  height: auto;
+  display: block;
+}
+
+.start-chatting-button {
+  position: absolute;
+  bottom: 50px;
+  right: 50px;
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  transition: transform 0.3s ease, filter 0.3s ease;
+  z-index: 10;
+}
+
+.start-chatting-button:hover {
+  transform: scale(1.15);
+  filter: drop-shadow(0 0 20px rgba(255, 255, 255, 0.8));
+}
+
+.start-chatting-button img {
+  width: 600px;
+  height: auto;
+  display: block;
+}
