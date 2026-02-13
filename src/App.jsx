@@ -1,5 +1,5 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import Homepage from './Homepage/Homepage';
 import SelectPage from './SelectPage/SelectPage';
 import ChatPage from './ChatPage/ChatPage';
@@ -7,11 +7,15 @@ import Makoto from './Makoto/Makoto';
 import Futaba from './Futaba/Futaba';
 import Takemi from './Takemi/Takemi';
 import Kawakami from './Kawakami/Kawakami';
+import MusicButton from './assets/MusicButton.png';
+import BeneathTheMask from './assets/Beneath the Mask.mp3';
 import './App.css';
 
 export default function App() {
   const [cursorPos, setCursorPos] = useState({ x: 0, y: 0 });
   const [cursorState, setCursorState] = useState('normal'); // 'normal', 'hover', 'text'
+  const [isPlaying, setIsPlaying] = useState(false);
+  const audioRef = useRef(null);
 
   useEffect(() => {
     const handleMouseMove = (e) => {
@@ -43,8 +47,24 @@ export default function App() {
     return () => window.removeEventListener('mousemove', handleMouseMove);
   }, []);
 
+  const toggleMusic = () => {
+    if (audioRef.current) {
+      if (isPlaying) {
+        audioRef.current.pause();
+        setIsPlaying(false);
+      } else {
+        audioRef.current.play();
+        setIsPlaying(true);
+      }
+    }
+  };
+
   return (
     <>
+      <audio ref={audioRef} src={BeneathTheMask} loop />
+      <button className={`global-music-button ${isPlaying ? 'playing' : ''}`} onClick={toggleMusic}>
+        <img src={MusicButton} alt="Music" />
+      </button>
       <div 
         className={`custom-cursor ${cursorState === 'hover' ? 'cursor-hover' : ''} ${cursorState === 'text' ? 'cursor-text' : ''}`}
         style={{ 

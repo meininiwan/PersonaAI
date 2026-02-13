@@ -3,8 +3,6 @@ import { useNavigate } from 'react-router-dom';
 import './ChatPage.css';
 import { sendMessageToGemini } from '../services/gemini';
 import LogoMini from '../assets/LogoMini.png';
-import MusicButton from '../assets/MusicButton.png';
-import BeneathTheMask from '../assets/Beneath the Mask.mp3';
 
 // Import icons
 import MakotoIcon from '../assets/MakotoIcon.png';
@@ -64,9 +62,7 @@ export default function ChatPage() {
   const [messages, setMessages] = useState([]);
   const [input, setInput] = useState('');
   const [isLoading, setIsLoading] = useState(false);
-  const [isPlaying, setIsPlaying] = useState(false);
   const messagesEndRef = useRef(null);
-  const audioRef = useRef(null);
 
   // Function to parse markdown-style formatting
   const formatMessage = (text) => {
@@ -175,25 +171,12 @@ export default function ChatPage() {
     }
   };
 
-  const toggleMusic = () => {
-    if (audioRef.current) {
-      if (isPlaying) {
-        audioRef.current.pause();
-        setIsPlaying(false);
-      } else {
-        audioRef.current.play();
-        setIsPlaying(true);
-      }
-    }
-  };
-
   if (!character) return <div className="loading-screen">Loading...</div>;
 
   const charData = CHARACTERS[character];
 
   return (
     <div className="chat-page-container">
-      <audio ref={audioRef} src={BeneathTheMask} loop />
       <div className="sidebar-logo" onClick={() => navigate('/')}>
         <img src={LogoMini} alt="P5 Logo" />
       </div>
@@ -210,9 +193,6 @@ export default function ChatPage() {
       </div>
 
       <div className="main-chat-area">
-        <button className={`music-button ${isPlaying ? 'playing' : ''}`} onClick={toggleMusic}>
-          <img src={MusicButton} alt="Music" />
-        </button>
         <div className="chat-header-decoration">
           <h2 onClick={() => navigate(`/${character.toLowerCase()}`)} style={{ cursor: 'pointer' }}>
             {charData.name}
