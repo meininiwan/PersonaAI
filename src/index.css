@@ -1,1 +1,46 @@
 @import "tailwindcss";
+
+* {
+  cursor: none !important;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+}
+
+.custom-cursor {
+  position: fixed;
+  width: 24px;
+  height: 24px;
+  pointer-events: none;
+  z-index: 10000;
+  transform: translate(-2px, -2px) scale(3.0);
+  background-image: url('/src/assets/NormalState_MouseCursor1.gif');
+  background-size: contain;
+  background-repeat: no-repeat;
+  transition: background-image 0.1s ease;
+}
+
+.custom-cursor.cursor-hover {
+  background-image: url('/src/assets/ButtonSelect_MouseCursor3.gif');
+}
+
+.custom-cursor.cursor-text {
+  background-image: url('/src/assets/TextSelect_MouseCursor2.gif');
+}
+
+.cursor-glow {
+  position: fixed;
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 9999;
+  background: radial-gradient(ellipse at 30% 30%, rgba(255, 255, 255, 0.25) 0%, rgba(255, 255, 255, 0.08) 40%, transparent 65%);
+  filter: blur(2px);
+  transform: translate(-5px, -5px);
+  mix-blend-mode: screen;
+  opacity: 0.5;
+}
